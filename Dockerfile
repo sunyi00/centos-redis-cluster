@@ -24,7 +24,7 @@ RUN buildDeps='make gcc gcc-c++ libc6-dev tar git unzip wget libevent clang libs
     && unzip redis-ctl.zip \
     && rm redis-ctl.zip \
     && cd redis-ctl-master/ \
-    && pip install -r requirements.txt
+    && pip install -r requirements.txt \
     && wget http://influxdb.s3.amazonaws.com/influxdb-0.9.0-1.x86_64.rpm \
     && rpm -ivh influxdb-0.9.0-1.x86_64.rpm \
     && rm -f influxdb-0.9.0-1.x86_64.rpm \
