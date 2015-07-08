@@ -4,10 +4,11 @@ ENV REDIS_VERSION 3.0.2
 ENV REDIS_DOWNLOAD_URL http://download.redis.io/releases/redis-3.0.2.tar.gz
 ENV REDIS_DOWNLOAD_SHA1 a38755fe9a669896f7c5d8cd3ebbf76d59712002
 
-RUN buildDeps='make gcc gcc-c++ libc6-dev tar git unzip wget libevent clang libstdc++-static'; \
+RUN buildDeps='gcc-c++ libc6-dev tar git unzip wget libevent clang libstdc++-static'; \
+    baseDeps='make gcc curl libffi-devel'; \
     set -x \
     && yum install -y epel-release \
-    && yum install -y $buildDeps \
+    && yum install -y $baseDeps $buildDeps \
     && yum install -y python-devel mysql-devel python-pip \
     && pip install pip --upgrade \
     && pip install supervisor \
