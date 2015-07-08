@@ -10,7 +10,10 @@ RUN buildDeps='make gcc gcc-c++ libc6-dev tar git unzip wget libevent clang libs
     && yum install -y $buildDeps \
     && yum install -y python-devel mysql-devel python-pip \
     && pip install pip --upgrade \
+    && pip install supervisor \
+    && mkdir -p /var/log/supervisor \
     && mkdir -p /usr/src/redis \
+    && mkdir -p /redis \
     && cd /root/ \
     && curl -sSL "$REDIS_DOWNLOAD_URL" -o redis.tar.gz \
     && echo "$REDIS_DOWNLOAD_SHA1 *redis.tar.gz" | sha1sum -c - \
@@ -42,10 +45,7 @@ RUN buildDeps='make gcc gcc-c++ libc6-dev tar git unzip wget libevent clang libs
     && yum clean -y all && rm -rf /var/cache/yum/* \
     && yum remove -y $buildDeps
 
-
-RUN mkdir -p /redis
 VOLUME /redis
-WORKDIR /redis
 
 EXPOSE 5000
 EXPOSE 6379
