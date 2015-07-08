@@ -11,6 +11,7 @@ RUN buildDeps='gcc-c++ libc6-dev tar git unzip wget libevent clang libstdc++-sta
     && yum install -y $baseDeps $buildDeps \
     && yum install -y python-devel mysql-devel python-pip \
     && pip install pip --upgrade \
+    && pip install pyopenssl ndg-httpsclient pyasn1 \
     && pip install supervisor \
     && mkdir -p /var/log/supervisor \
     && mkdir -p /usr/src/redis \
